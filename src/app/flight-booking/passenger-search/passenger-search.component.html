@@ -1,0 +1,67 @@
+<h1>Search passenger by name</h1>
+
+<div class="form-group">
+    <label>Name of Passenger:</label>
+    <input type="text" [(ngModel)]="searchName" class="form-control">
+</div>
+
+<div class="form-group">
+    <button class="btn btn-default" [disabled]="!searchName" (click)="searchPassengerByName()">Search</button>
+</div>
+<!--
+<div>
+    <label>Found passengers:</label>
+    <table class="table table-striped">
+        <tr *ngFor="let fp of foundPassengers">
+            <td>{{fp.id}}</td>
+            <td>{{fp.name}}</td>
+            <td>{{fp.firstName}}</td>
+            <td>{{fp.bonusMiles}}</td>
+            <td><span [ngStyle]="{color: fp.passengerStatus | statusColor }">
+                {{fp.passengerStatus | status:'long' }}
+                </span>
+            </td>
+            <td><a (click)="setEditPassenger(fp)">edit</a></td>
+        </tr>
+    </table>
+</div>
+-->
+
+<div class="row">
+    <div *ngFor="let fp of foundPassengers" style="margin-bottom: 20px" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <passenger-card [passenger]="fp" [(selected)]="basket[fp.id]">
+            <h1 class="top">Found passengers</h1>
+            <pre class="bottom">{{ fp | json }}</pre>
+        </passenger-card>
+    </div>
+</div>
+<div class="row">
+    <pre>Warenkorb
+    ----------------
+    {{ basket | json }}    
+    </pre>
+</div>
+
+<div *ngIf="editPassenger!=null">    
+    <form #editPassengerForm="ngForm" (ngSubmit)="saveEditedPassenger(editPassenger)">    
+        <div class="form-group">
+            <label>FirstName:</label>
+            <input type="text" [(ngModel)]="editPassenger.firstName" name="firstName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" [(ngModel)]="editPassenger.name" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>BonusMiles:</label>
+            <input type="text" [(ngModel)]="editPassenger.bonusMiles" name="bonusMiles" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <input type="text" [(ngModel)]="editPassenger.passengerStatus" name="passengerStatus" class="form-control">
+        </div>
+        <div class="form-group">            
+            <button class="btn" type="submit">Save</button>            
+        </div>
+    </form>
+</div>

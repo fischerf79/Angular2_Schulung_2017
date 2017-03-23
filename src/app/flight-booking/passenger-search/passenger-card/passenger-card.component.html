@@ -1,0 +1,17 @@
+<div style="padding:20px;"
+     [ngStyle]="{'background-color': (selected) ?  'orange' : 'lightsteelblue' }">
+     
+    <ng-content select=".top"></ng-content>
+
+    <h2>{{passenger.firstName}} {{passenger.name}}</h2>
+    <p>PassengerId. #{{passenger.id}}</p>    
+    <p>Bonus miles: {{passenger.bonusMiles}}</p>    
+    <p>
+        <passenger-status-toggle [(status)]="passenger.passengerStatus"></passenger-status-toggle>
+    </p>
+    <p>
+       <button *ngIf="!selected" (click)="select()">Auswählen</button>
+       <button *ngIf="selected" (click)="deselect()">Entfernen</button>   
+    </p>
+    <ng-content select=".bottom"></ng-content>
+</div>
