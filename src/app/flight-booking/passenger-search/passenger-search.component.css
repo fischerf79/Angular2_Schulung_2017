@@ -1,0 +1,15 @@
+input.ng-invalid {
+    /* rötlicher Rand bei Fehler */
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color: firebrick
+
+}
+
+input.ng-valid {
+    /* grünlicher Rand bei Fehler */
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color: chartreuse;
+
+}

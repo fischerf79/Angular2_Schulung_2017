@@ -1,31 +1,28 @@
 <h1>Search passenger by name</h1>
+<form #searchForm="ngForm" (ngSubmit)="searchPassengerByName()" novalidate>
+    <div class="form-group">
+        <label>Name of Passenger:</label>
+        <input type="text" 
+            [(ngModel)]="searchName" 
+            class="form-control" 
+            name="searchName"
+            val-name>
+            <!--
+            <div *ngIf="!searchForm?.controls?.searchName?.valid">
+                Fehler in Eingabefeld
+                <pre>{{ searchForm?.controls?.searchName?.errors | json }}</pre>
+            </div>
+            <div *ngIf="searchForm?.controls?.searchName?.hasError('val-name')">
+                SearchName
+            </div>
+            -->
+            <validation-error [errors]="searchForm?.controls?.searchName?.errors"></validation-error>
+    </div>
 
-<div class="form-group">
-    <label>Name of Passenger:</label>
-    <input type="text" [(ngModel)]="searchName" class="form-control">
-</div>
-
-<div class="form-group">
-    <button class="btn btn-default" [disabled]="!searchName" (click)="searchPassengerByName()">Search</button>
-</div>
-<!--
-<div>
-    <label>Found passengers:</label>
-    <table class="table table-striped">
-        <tr *ngFor="let fp of foundPassengers">
-            <td>{{fp.id}}</td>
-            <td>{{fp.name}}</td>
-            <td>{{fp.firstName}}</td>
-            <td>{{fp.bonusMiles}}</td>
-            <td><span [ngStyle]="{color: fp.passengerStatus | statusColor }">
-                {{fp.passengerStatus | status:'long' }}
-                </span>
-            </td>
-            <td><a (click)="setEditPassenger(fp)">edit</a></td>
-        </tr>
-    </table>
-</div>
--->
+    <div class="form-group">
+        <button class="btn btn-default" [disabled]="!searchName" type="submit">Search</button>
+    </div>
+</form>
 
 <div class="row">
     <div *ngFor="let fp of foundPassengers" style="margin-bottom: 20px" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
@@ -43,7 +40,7 @@
 </div>
 
 <div *ngIf="editPassenger!=null">    
-    <form #editPassengerForm="ngForm" (ngSubmit)="saveEditedPassenger(editPassenger)">    
+    <form #editPassengerForm="ngForm" (ngSubmit)="saveEditedPassenger(editPassenger)" novalidate>    
         <div class="form-group">
             <label>FirstName:</label>
             <input type="text" [(ngModel)]="editPassenger.firstName" name="firstName" class="form-control">
@@ -54,7 +51,14 @@
         </div>
         <div class="form-group">
             <label>BonusMiles:</label>
-            <input type="text" [(ngModel)]="editPassenger.bonusMiles" name="bonusMiles" class="form-control">
+            <input type="text" [(ngModel)]="editPassenger.bonusMiles" name="bonusMiles" class="form-control" [bonusMile]="5001">
+            <div *ngIf="!editPassengerForm?.controls?.bonusMiles?.valid">
+                Fehler in Eingabefeld
+                <pre>{{ filter?.controls?.from?.errors | json }}</pre>
+            </div>
+            <div *ngIf="editPassengerForm?.controls?.bonusMiles?.hasError('bonusMile')">
+                BonusMile
+            </div>
         </div>
         <div class="form-group">
             <label>Status:</label>

@@ -13,7 +13,8 @@ import 'rxjs/add/operator/map';
     templateUrl: './passenger-search.component.html',
     providers: [
         //{provide: AbstractPassengerService, useClass: AnonymousPassengerService } 
-    ]
+    ],
+    styleUrls:['./passenger-search.component.css']
 })
 export class PassengerSearchComponent {
     searchName: string;
