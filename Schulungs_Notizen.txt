@@ -1,0 +1,60 @@
+Angular2: 
+
+-> Best practices <-
+
+- alle im template gebundenen Variablen stets public machen, da Angula2 Kompiler ansonsten Probleme bekommen kann und Performanceeinbussen drohen
+- im Konstruktor meiner Komponente können die Typen einfach angegeben werden, Angular2erzeugt und injeziert diese dann
+- für Observable.map zur Verfügung zu stellen, wird einmaliger Import (1x pro Anwendung) benötigt!!!
+- bei Lambda Ausdrücken wird das this IMMER gebunden und man muss sich nicht darum kümmern
+	- bei Verwendung einer Function anstatt eines Lambda Ausdrucks, wird das that=this Pattern wieder relevant
+
+- Einführung von app.tokens.ts zum injecten von Globalen Konstanten wie z.B. BASE_URL, die dann als BASE_URL mittels useValue='http://...' provided wird
+
+Module:
+- AppModul 
+- Feature Module (pro Modul ca. 7 +-2 Elemente)
+	- import CommonModul, FormsModul, SharedModul
+- Shared Modul ((pro Modul ca. 7 +-2 Elemente) (z.B. Pipes, Authentifizierung, Aktueller Benutzer anmelden, ... abmelden, Logging, ...) 
+	- import CommonModul (
+		- Angular2 Modul: 
+			beinhaltet alle Sachen, die wir als gegeben hinnehmen, 
+			z.B. NgIf, NgFor, Pipes, ...,
+			durch import des Browser Moduls wird auch Common Modul angebunden
+
+- Core Modul (für allgemeine Services, die anwendungsübergreifend eingesetzt wird, konkurriert mit Shared Modul)
+
+- providers sind global verfügbar UND bei identischen Providern "gewinnt" immer der letzte, 
+	die Reihenfolge wird durch die Reihenfolge der imports/ das Laden der Module von Angular2 bestimmt
+	Es gibt keine Warning oder ähnliches! 
+
+- Direktive ist dasselbe wie eine Komponente jedoch ohne HTML Template
+	- Direktive werden in der Regel als HTML Attribut umgesetzt
+		- man unterscheidet zwischen attribut direktiven
+		- und struktur direktiven
+	- Direktiven bekommen einen CSS Selektor
+		- z.B. "Form  Input.Ort" - für alle Form Elemente, die ein Input beihalten und ein attribut Ort haben
+	- sind als @Directive attributiert
+	- Validatordirektiven implementieren Validator 
+		- und haben somit eine validate Methode und erhalten als Parameter ein AbstractControl
+		- und geben ein Object mit Detailinfos zurück {ort: true} 
+			oder {ort: {
+						reason: 42,
+						tryAgain: 2019,
+						current: "Nürnberg"
+						}
+					} -> invalid
+		- oder null {} -> kein Fehler/ valid
+		
+	
+Typescript:
+
+- Typescript Kompiler veröffentlich *.map Dateien mit Debugging Informationen zum Debuggen der ts Dateien im Browser und setzen von BreakPoints
+
+ Bundle ---> MAP ---> TS Dateien
+ z.B.:
+ Zeile 7000 JS --------> Zeile 7 TS Datei 1
+ Zeile 8000 JS --------> Zeile 32 TS Datei 2
+
+
+Google Chrome
+- Erweiterung Clear Cache 
