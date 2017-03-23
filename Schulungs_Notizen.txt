@@ -45,7 +45,11 @@ Module:
 					} -> invalid
 		- oder ein leeres Objekt 
 		z.B.: {} -> kein Fehler/ valid
-		
+
+- unterschied Promise und Observable
+	- Observable ist abrechbar, ist das generellere Konzept, liefert auch mehrere Objekte
+	- Promise ist stellvertreter eines Ergebnisses, nicht abbrechbar, wenn Daten kommen, kommen diese (z.B. Vapiano Buzzer oder Sky Abo - nur schwer abbrechbar)
+
 	
 Typescript:
 
