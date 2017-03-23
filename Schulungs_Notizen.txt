@@ -36,14 +36,15 @@ Module:
 	- sind als @Directive attributiert
 	- Validatordirektiven implementieren Validator 
 		- und haben somit eine validate Methode und erhalten als Parameter ein AbstractControl
-		- und geben ein Object mit Detailinfos zurück {ort: true} 
-			oder {ort: {
+		- und geben ein Object mit Detailinfos zurück {ort: true} => Fehlerbeschreibungsobjekt
+			z.B.: {ort: {
 						reason: 42,
 						tryAgain: 2019,
 						current: "Nürnberg"
 						}
 					} -> invalid
-		- oder null {} -> kein Fehler/ valid
+		- oder ein leeres Objekt 
+		z.B.: {} -> kein Fehler/ valid
 		
 	
 Typescript:
