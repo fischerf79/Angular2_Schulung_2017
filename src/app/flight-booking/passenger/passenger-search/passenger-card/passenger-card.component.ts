@@ -1,4 +1,4 @@
-import { Passenger } from './../../../model/passenger';
+import { Passenger } from './../../../../model/passenger';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({

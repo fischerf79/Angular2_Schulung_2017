@@ -1,5 +1,5 @@
+import { Passenger } from './../../../model/passenger';
 import { AbstractPassengerService } from './abstractPassengerService';
-import { Passenger } from './../../model/passenger';
 import { AnonymousPassengerService } from './anonymousPassengerService';
 import { PassengerService } from './passengerService';
 import { Component } from '@angular/core';
@@ -13,16 +13,15 @@ import 'rxjs/add/operator/map';
     templateUrl: './passenger-search.component.html',
     providers: [
         //{provide: AbstractPassengerService, useClass: AnonymousPassengerService } 
+        
     ],
     styleUrls:['./passenger-search.component.css']
 })
 export class PassengerSearchComponent {
-    searchName: string;
-
-    foundPassengers: Array<Passenger>;
+    searchName: string;    
     editPassenger: Passenger = null; 
 
-    basket: Map<number, boolean> = new Map<number, boolean>();  
+     
 
     constructor(private passengerService: AbstractPassengerService) {
         //console.log("PassengerSearchComponent:", this.passengerService);
@@ -31,21 +30,16 @@ export class PassengerSearchComponent {
     /**
      * Sucht einen Passagier nach seinem Namen 
      */
-    public searchPassengerByName(): void {      
-        
-        this.passengerService
-            .find(this.searchName)
-            .subscribe((passengers) => {
-                this.foundPassengers = passengers;
-                
-                this.basket.clear();
-                this.foundPassengers.forEach(item => {
-                    this.basket.set(item.id, false);
-                });
-            },
-            (error) => {
-                console.error("Fehler bei Suche nach Passagier.", error);
-            });     
+    public searchPassengerByName(): void {              
+        this.passengerService.find(this.searchName);                
+    }
+
+    public get foundPassengers(): Array<Passenger> {
+        return this.passengerService.foundPassengers;
+    }
+
+    public get basket(): Map<number, boolean> {
+        return this.passengerService.basket;
     }
 
     public setEditPassenger(passengerToEdit: Passenger): void {
@@ -63,5 +57,12 @@ export class PassengerSearchComponent {
             (error) => {
                 console.error("Fehler beim Speichern:", error);
             });
+    }
+
+    public currentPassengerIsSelected(passenger: Passenger): boolean {        
+        if(passenger && this.basket && this.basket.has(passenger.id)) {
+            return this.basket.get(passenger.id);
+        }
+        return false;
     }
 }

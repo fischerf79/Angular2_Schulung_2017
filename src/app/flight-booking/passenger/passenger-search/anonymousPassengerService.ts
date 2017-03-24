@@ -2,12 +2,14 @@ import { Http, URLSearchParams, Headers } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { AbstractPassengerService } from "./abstractPassengerService";
-import { Passenger } from "../../model/passenger";
+import { Passenger } from "../../../model/passenger";
 
 @Injectable()
 export class AnonymousPassengerService implements AbstractPassengerService{
 
     public url: string = "http://www.angular.at/api/passenger";
+    public basket: Map<number, boolean> = new Map<number, boolean>();
+    public foundPassengers: Array<Passenger> = [];
 
     constructor(private httpService: Http) {
         //console.log("PassengerService:", this.httpService);

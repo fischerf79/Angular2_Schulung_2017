@@ -50,7 +50,16 @@ Module:
 	- Observable ist abrechbar, ist das generellere Konzept, liefert auch mehrere Objekte
 	- Promise ist stellvertreter eines Ergebnisses, nicht abbrechbar, wenn Daten kommen, kommen diese (z.B. Vapiano Buzzer oder Sky Abo - nur schwer abbrechbar)
 
+- Forms
+	- Reaktive Formulare: 
+		API reaktion auf formgroup.valueChange mittels subscribe
+			z.B. filter: formgroup
+				(1): Änderung eines Wertes eines Controls innerhalb der FormGroup -> this.filter.valueChange.subscribe((change) => { console.log("Wert geändert!!")});
+				(2): Änderung des Werts des controls 'von' -> this.filter.controls["von"].valueChange.subscribe((change) => {"Wert für control 'von' geändert."});
+
+- Routing
 	
+
 Typescript:
 
 - Typescript Kompiler veröffentlich *.map Dateien mit Debugging Informationen zum Debuggen der ts Dateien im Browser und setzen von BreakPoints

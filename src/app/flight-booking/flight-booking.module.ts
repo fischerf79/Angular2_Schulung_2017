@@ -1,8 +1,7 @@
-import { PassengerStatusToogleComponent } from './passenger-search/passenger-status-toggle/passenger-status-toggle.component';
-import { PassengerCardComponent } from './passenger-search/passenger-card/passenger-card.component';
-import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
-import { PassengerService } from './passenger-search/passengerService';
-import { AbstractPassengerService } from './passenger-search/abstractPassengerService';
+import { FlightSearchComponent } from './flight/flight-search/flight-search.component';
+import { PassengerRoutingModule } from './passenger/passenger.routes';
+import { PassengerModule } from './passenger/passenger.module';
+import { FlightBookingRoutesModule } from './flight-booking.routes';
 import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,18 +12,16 @@ import { NgModule } from '@angular/core';
     imports: [        
         BrowserModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        FlightBookingRoutesModule        
     ],
-    declarations: [
-        PassengerSearchComponent,
-        PassengerCardComponent,
-        PassengerStatusToogleComponent
+    declarations: [ 
+        FlightSearchComponent               
     ],
     providers: [
-        {provide: AbstractPassengerService, useClass: PassengerService }
+        
     ],
-    exports: [
-        PassengerSearchComponent        
+    exports: [        
     ]
 })
 export class FlightBookingModule {

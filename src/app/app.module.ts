@@ -1,3 +1,6 @@
+import { PassengerModule } from './flight-booking/passenger/passenger.module';
+import { AppRoutesModule } from './app.routes';
+import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core.module';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
 import { SharedModule } from './shared/shared.module';
@@ -12,10 +15,13 @@ import { AppComponent } from './app.component';
   imports: [        
       BrowserModule,
       HttpModule,        
-      FlightBookingModule       
+      FlightBookingModule,
+      PassengerModule,
+      AppRoutesModule
   ],
   declarations: [
-        AppComponent
+        AppComponent,
+        HomeComponent
   ],  
   providers: [    
      //{provide: AbstractPassengerService, useClass: AnonymousPassengerService }

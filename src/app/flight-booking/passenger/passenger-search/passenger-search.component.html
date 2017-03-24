@@ -6,16 +6,7 @@
             [(ngModel)]="searchName" 
             class="form-control" 
             name="searchName"
-            val-name>
-            <!--
-            <div *ngIf="!searchForm?.controls?.searchName?.valid">
-                Fehler in Eingabefeld
-                <pre>{{ searchForm?.controls?.searchName?.errors | json }}</pre>
-            </div>
-            <div *ngIf="searchForm?.controls?.searchName?.hasError('val-name')">
-                SearchName
-            </div>
-            -->
+            val-name>            
             <validation-error [errors]="searchForm?.controls?.searchName?.errors"></validation-error>
     </div>
 
