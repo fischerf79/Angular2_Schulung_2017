@@ -11,7 +11,7 @@ const APP_ROUTES: Routes = [
     {
         path: "home",
         component: HomeComponent
-    }, 
+    },     
     {
         path: "**",
         redirectTo: "home"

@@ -59,7 +59,30 @@ Module:
 
 - Routing
 	
+- Lazy Loading
+	- Routing mittels Komponenten initialisiert diese in der Routing Konfig
+	- deswegen werden Routen umgestellt, dass diese erst bei Bedarf nachgeladen werden
 
+- PreLoading
+	- wird verwendet, um beim die Verzögerung beim Nachladen von Modulen mittels Lazy Loading gering zu erhalten
+	- und somit z.B. spezielle Routen bereits vorladen mittels eigener PreloadingStrategie
+	- hierzu kann innerhalb der Routing Konfiguration z.B. ein Property gesetzt werden und somit spezielle Module preloaden
+		{
+			path: "home",
+			component: HomeComponent
+			data: {
+				preload: true
+			}
+		}
+	- auch z.B.: das Laden von Modulen nach Priorität ist somit möglich
+		{
+			path: "home",
+			component: HomeComponent
+			data: {
+				preload: true,
+				priority: 1
+			}
+		}
 Typescript:
 
 - Typescript Kompiler veröffentlich *.map Dateien mit Debugging Informationen zum Debuggen der ts Dateien im Browser und setzen von BreakPoints
